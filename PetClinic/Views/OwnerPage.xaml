@@ -2,8 +2,64 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="PetClinic.Views.OwnerPage">
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:viewmodels="clr-namespace:PetClinic.ViewModels"
+    xmlns:models="clr-namespace:PetClinic.Models"
+    x:Class="PetClinic.Views.OwnerPage"
+    x:Name="MainOwnerPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:OwnerViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        
+        <StackLayout>
+            <!--<SearchBar Text="{Binding OwnerSearch}"
+                       SearchCommand="{Binding OwnerSearchCommand}"/>-->
+            <CollectionView ItemsSource="{Binding Owners}"
+                            SelectionMode="Single">
+
+            <CollectionView.EmptyView>
+                <Label Text="No owners found." />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                         <!--<SwipeView android:SwipeView.SwipeTransitionMode="Drag">
+                             <SwipeView.RightItems>
+                                 <SwipeItem BackgroundColor="DarkOliveGreen"
+                                            Command="{Binding Source={x:Reference MainOwnerPage}, Path=BindingContext.ViewPets}"
+                                            CommandParameter="{Binding .}"
+                                            Text="View Pets"/>
+
+                             </SwipeView.RightItems>
+                         </SwipeView>-->
+                         <Frame Margin="10, 20, 10, 0"
+                               Padding="0"
+                               CornerRadius="10"
+                               HorizontalOptions="FillAndExpand"
+                               IsClippedToBounds="True">
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding firstName}" FontAttributes="Bold"/>
+                                <Label Text="{Binding lastName}" FontAttributes="Bold"/>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="{Binding address}"/>
+                                <Label Text="{Binding city}"/>
+                                <Label Text="{Binding telephone}"/>
+                            </StackLayout> 
+                        </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    </DataTemplate>
+             </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

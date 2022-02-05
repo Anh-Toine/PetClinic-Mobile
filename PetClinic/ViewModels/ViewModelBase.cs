@@ -1,10 +1,10 @@
 ﻿using System;
+using MvvmHelpers;
+
 namespace PetClinic.ViewModels
 {
-    public class ViewModelBase
+    public class ViewModelBase : BaseViewModel
     {
-        public ViewModelBase()
-        {
-        }
+        
     }
 }

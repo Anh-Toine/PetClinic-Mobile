@@ -17,5 +17,6 @@ namespace PetClinic.Views
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
         }
+
     }
 }
